@@ -10,8 +10,15 @@ type Query {
 
 type RecentSalesNotifications @doc(description: "RecentSalesNotification information") {
     items: [RecentSalesNotification] @doc(description: "An array of popups")
+    popupList: [PopupList] @doc(description: "An array of popup data")
     total_count: Int @doc(description: "The number of recent sales notification returned")
     page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query")
+}
+
+type PopupList @doc(description: "Popup List provides an array of popup data") {
+    product_url_key: String @doc(description: "Product URL")
+    customer_name: String @doc(description: "Customer name")
+    time: String @doc(description: "Purchase time")
 }
 
 type RecentSalesNotification @doc(description: "RecentSalesNotification defines all RecentSalesNotification information") {

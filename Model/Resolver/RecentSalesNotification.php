@@ -29,6 +29,7 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\RecentSalesNotification\Helper\Data;
 use Mageplaza\RecentSalesNotificationGraphQl\Model\Resolver\RecentSalesNotification\DataProvider;
+use Mageplaza\RecentSalesNotificationGraphQl\Model\PopupData;
 
 /**
  * Class RecentSalesNotification
@@ -51,6 +52,8 @@ class RecentSalesNotification implements ResolverInterface
      */
     protected $searchCriteriaBuilder;
 
+    protected $popupData;
+
     /**
      * RecentSalesNotificationGraphQl constructor.
      *
@@ -61,11 +64,13 @@ class RecentSalesNotification implements ResolverInterface
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
         DataProvider $dataProvider,
-        Data $helperData
+        Data $helperData,
+        PopupData $popupData
     ) {
         $this->dataProvider          = $dataProvider;
         $this->helperData            = $helperData;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->popupData             = $popupData;
     }
 
     /**
@@ -114,9 +119,14 @@ class RecentSalesNotification implements ResolverInterface
             );
         }
 
+        $popupId = $args['filter']['pop_id']['eq'];
+
+        $popupList = $this->popupData->getData($popupId);
+
         return [
             'total_count' => $collection->getSize(),
             'items'       => $collection->getItems(),
+            'popupList'   => $popupList,
             'page_info'   => [
                 'page_size'    => $pageSize,
                 'current_page' => $currentPage,
