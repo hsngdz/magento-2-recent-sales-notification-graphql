@@ -64,8 +64,6 @@ class PopupData
             $this->logger->error($e->getMessage());
         }
 
-        shuffle($popupList);
-
         return $popupList;
     }
 }
