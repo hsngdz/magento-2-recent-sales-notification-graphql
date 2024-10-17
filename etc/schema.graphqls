@@ -18,6 +18,7 @@ type RecentSalesNotifications @doc(description: "RecentSalesNotification informa
 type PopupList @doc(description: "Popup List provides an array of popup data") {
     product_url_key: String @doc(description: "Product URL")
     customer_name: String @doc(description: "Customer name")
+    city: String @doc(description: "City")
     time: String @doc(description: "Purchase time")
 }
 

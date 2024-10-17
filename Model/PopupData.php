@@ -55,7 +55,8 @@ class PopupData
                 $productUrl = $product->getUrlKey();
                 $item = [
                     'product_url_key' => $productUrl,
-                    'customer_name' => $item['customer_name'] ?? "",
+                    'customer_name'   => $item['customer_name'] ?? "",
+                    'city' => $item['city'] ?? "",
                     'time' => $item['time'] ?? "recently"
                 ];
                 $popupList[$key] = $item;
